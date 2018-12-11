@@ -21,5 +21,21 @@
         pathRewrite:{
             '^/mg':''
         }
+    })),
+    app.use(proxy('/sousuo',{
+        target:'https://search.mogujie.com',
+        changeOrigin:true,
+        pathRewrite:{
+            '^/sousuo':''
+        }
+    })),
+    app.use(proxy('/clothes',{
+        target:'http://act.meilishuo.com/',
+        changeOrigin:true,
+        pathRewrite:{
+            '^/clothes':''
+        }
     }))
+  
+     
  }

@@ -3,7 +3,7 @@ import React, { Component } from "react";
  
 import Jsonp from 'jsonp'
  
- 
+import BScroll from 'better-scroll'
 class Shopitem extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,7 @@ class Shopitem extends Component {
             <a href={dataItem.link}>
               <img
                 src={dataItem.image}
-                style={{ width: "1.32rem", height: "1.64rem" }}
+                style={{ width: "1.5rem", height: "1.9rem" }}
                 alt=""
               />
               <div
@@ -61,3 +61,5 @@ class Shopitem extends Component {
   }
 }
 export default Shopitem;
+
+ 

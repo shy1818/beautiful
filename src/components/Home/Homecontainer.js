@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import Header from "../Header";
-//import { HomeWrapper } from './styledComponent'
+import BScroll from 'better-scroll'
 import HomeSwiper from "./HomeSwiper";
 import Activity from "./activity";
 import styled from "styled-components";
 import Cloth from "./Clothes"
-
+import {Link,withRouter} from 'react-router-dom';
  
-
+const HomeWrapper = styled.section`
+    width: 100%;
+    height:100%; 
+    overflow: hidden;
+`
 const Homestyle = styled.div`
+ width: 100%;
+    height:100%; 
   .imgbox {
     width: 100%;
     height: 4.2rem;
@@ -91,15 +97,19 @@ const Homestyle = styled.div`
     color: #666;
     text-decoration: none;
   }
+  .clothes{
+    width: 100%;
+    height: 100%; 
+  }
 `;
 class HomeContainer extends Component {
   render() {
     return (
-      <div>
+         <Homestyle>
         <Header> </Header>
         <HomeSwiper />
         <Activity />
-        <Homestyle>
+     
           <div className="imgbox">
             <img
               src="https://s10.mogucdn.com/mlcdn/c45406/181112_4hgkh8ad1j6hj4095bcbgl9aaa1f5_750x420.jpg_800x9999.v1c7E.70.jpg"
@@ -188,6 +198,7 @@ class HomeContainer extends Component {
               查看更多 <i className="arrow" />
             </p>
           </div>
+          <div className='clothes'>
           <div className="nav-wrap" >
             <a className="nav-item fl" href="javascript:void(0);">
                 <span>流行</span>
@@ -199,13 +210,24 @@ class HomeContainer extends Component {
               <span>精选</span>
             </a>    
           </div>
-        </Homestyle>
-         
-     <Cloth></Cloth>
-   
-      </div>
+       
+         <HomeWrapper ref={el=>this.el=el}>
+     <Cloth scroll={this.scroll}></Cloth>
+         </HomeWrapper>
+          </div>
+      </Homestyle>
     );
   }
+  componentDidMount () {
+    //console.log(this.el)
+    // 使用引用类型的特性来进行数据的传递，保证子组件中可以使用到better-scroll的实例
+    this.scroll = new BScroll(this.el, {
+        pullUpLoad: {
+            threshold: 50
+        },
+        click: true
+    })
+}
 }
 
-export default HomeContainer;
+export default withRouter(HomeContainer)

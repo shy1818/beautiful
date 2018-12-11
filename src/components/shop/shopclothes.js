@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import BScroll from 'better-scroll'
 import axios from 'axios';
 import styled from 'styled-components'
-import Detail from '../shop/detail'
+import Jsonp from 'jsonp'
 import star from '@As/img/star.png'
 import {withRouter, Route,Router,Link } from 'react-router-dom';
 const Gridstyle=styled.div`
@@ -38,18 +38,16 @@ class Chloth extends Component {
         };
         
       }
-       componentDidMount(){
-        axios.get( 'ml/api/getGoods?page=1&zy_ids=p8_c4_l4_0&app_name=zhe&catname=tab_hpdp&flag=tab_hpdp').then((res)=>{
-           //console.log(res.data.data.goods);
+      componentDidMount() {
+   
+        //获取数据
+        Jsonp("clothes/wap/search?keyword="+`${this.props.items}`+"%90&ptp=m1._mf80_1067_11423.0.0.VuDD9UV&scroll=0&frame=0&page=1&height=4599&remember=1",(err,data)=>{
+   //console.log(data.data[5868].list )   
             this.setState({
-             items:res.data.data.goods
+              items:data 
             })
-             
-            
-        }).catch((err)=>{
-            console.log('数据获取失败');
         })
-    }
+      }
  render(){
    /*  console.log(this) */
   return (
@@ -57,7 +55,7 @@ class Chloth extends Component {
    
     <Gridstyle>
        
-       <Link to="/detail"> 
+       {/* <Link to="/detail"> 
     
   <Grid data={this.state.items} key={this.state.items.goods_id}
   columnNum={2} hasLine={false} 
@@ -77,7 +75,7 @@ class Chloth extends Component {
     </div>
   )}
 />  
-  </Link>  
+  </Link>   */}
  </Gridstyle>
  
  

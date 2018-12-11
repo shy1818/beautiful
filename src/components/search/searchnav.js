@@ -34,15 +34,21 @@ const Searchstyle=styled.div`
 `
 
   class Searchnav extends Component {
+    constructor(props) {
+      super(props);
    
+      this.state = {items:''};
+    }
+  
+     
     render() {
-       
+       //console.log(this)
       return (
         < Searchstyle>
         <div className="left">
        
         </div>
-        <div className="center"><Search/></div>
+        <div className="center"><Search onChange={this.props.onChange}/></div>
         <Link to='/home' className="right">取消</Link>
          
       </ Searchstyle>

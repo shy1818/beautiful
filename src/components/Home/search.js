@@ -1,5 +1,7 @@
 import { SearchBar, Button, WhiteSpace, WingBlank } from "antd-mobile";
 import React, { Component } from "react";
+import uuid from "uuid"
+import Jsonp from "jsonp"
 import styled from 'styled-components'
 import Searchimg from '@As/img/search.png'
 const Searchstyle=styled.div`
@@ -21,17 +23,44 @@ font-size: 0.24rem;
 `
 
 class  Search extends Component {
-  state = {
-    value: "套装"
-  };
-
+  constructor(props){
+    super(props)
+   /*  this.handleText = this.handleText.bind(this) */
+    this.searchHandler = this.searchHandler.bind(this)
+   this.state={
+     items:'',
+     text:''
+  
+  }
+  }
+  /* handleText(e){
+    this.props.onChange(e.target.value)
+  } */
+  
+  searchHandler(e) {
+    var text = e.target.value;
+    //console.log(this.props.itemkey)
+       //获取数据
+       Jsonp("/sousuo/jsonp/searchTipsMLS/1?data=%7B%22"+`keyword":"${text}`+"%22%7D&_=1543835593407",(err,data)=>{
+        
+  //console.log(data.data.tips)   
+       this.setState({
+         items:data.data.tips,
+         text:text
+       })
+       this.props.onChange(data.data.tips)
+       })
+     }
   render() {
+      /* const value=this.props.value */
+      console.log(this.state.text)
     return (
+    
         <Searchstyle>
       
-        
-        <input type="search" className="am-search-value" placeholder="套装" />
-        <a className="am-search-clear" />
+     {/*  value={value} onChange={this.handleChange} */}
+        <input type="search" className="am-search-value" placeholder='套装' onChange={this.searchHandler} value={this.state.text}/>
+     
        
       </Searchstyle>
     );

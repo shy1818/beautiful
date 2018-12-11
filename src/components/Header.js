@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
- 
+import {Link,withRouter} from 'react-router-dom';
 import styled from 'styled-components'
 import Flower from '@As/img/flower.png'
 import Message from '@As/img/message.png'
@@ -42,7 +42,7 @@ const Headerstyle=styled.div`
         <div className="left">
        
         </div>
-        <div className="center"><Search/></div>
+        <Link to='/search' className="center"><Search/></Link>
         <div className="right"></div>
          
       </Headerstyle>

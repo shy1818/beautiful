@@ -4,9 +4,13 @@ import {Link,withRouter} from 'react-router-dom';
 import styled from 'styled-components'
 import SearchNav from "./searchnav";
 import Fire from '@As/img/fire.png'
- 
-import Jsonp from 'jsonp'
 
+import Jsonp from 'jsonp'
+const Itemlist=styled.div`
+ 
+  
+    margin-left: 0.3rem;
+ `
 const Searchstyle=styled.div`
  
  .list li {
@@ -40,7 +44,7 @@ class searchitem extends Component {
    
       //获取数据
       Jsonp("/mg/jsonp/multiget/3?pids=5868%2C6348%2C43542%2C13730",(err,data)=>{
- console.log(data.data[5868].list )   
+ //console.log(data.data[5868].list )   
           this.setState({
             items:data.data[5868].list
           })
@@ -53,9 +57,9 @@ class searchitem extends Component {
     
       
       
-       <Searchstyle>
+       <Searchstyle key={Math.random()}>
        
-       <li className={item.is_red==1?"red":"color"}>{item.words}</li>
+       <Link to='/shoptype'> <li className={item.is_red==1?"red":"color"}>{item.words}</li></Link>
       
       
   </Searchstyle>

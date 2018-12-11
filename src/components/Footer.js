@@ -118,8 +118,8 @@ class Footer extends Component {
            {<CarContainer/>}
           </TabBar.Item>
           <TabBar.Item
-            icon={{ uri: 'https://s10.mogucdn.com/p2/160802/upload_5g85l55d280l94lfg678lcleegf5e_38x38.png' }}
-            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+            icon={{ url: 'https://s10.mogucdn.com/p2/160802/upload_5g85l55d280l94lfg678lcleegf5e_38x38.png' }}
+            selectedIcon={{ url: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
             title="我"
             key="my"
             selected={this.state.selectedTab === 'yellowTab'}
